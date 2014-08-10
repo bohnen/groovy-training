@@ -9,42 +9,60 @@
 )
 import org.apache.poi.ss.usermodel.*
 
-Sheet.metaClass.setCustomMargin = { ->
-    delegate.with {
-        setMargin(Sheet.LeftMargin,0.25)
-        setMargin(Sheet.RightMargin,0.25)
-        setMargin(Sheet.TopMargin,0.75)
-        setMargin(Sheet.BottomMargin,0.75)
-        setMargin(Sheet.FooterMargin,0.3)
-        setMargin(Sheet.HeaderMargin,0.3)
+/**
+ * Sheetクラスへの拡張
+ */
+@Category(Sheet)
+class SheetCategory{
+    /**
+     * マージンを設定
+     * @return
+     */
+    Sheet applyCustomMargin(){
+        this.with {
+            setMargin(Sheet.LeftMargin,0.4)
+            setMargin(Sheet.RightMargin,0.4)
+            setMargin(Sheet.TopMargin,0.6)
+            setMargin(Sheet.BottomMargin,0.6)
+            setMargin(Sheet.FooterMargin,0.3)
+            setMargin(Sheet.HeaderMargin,0.3)
+        }
+        this
     }
-    delegate
-}
 
-Sheet.metaClass.customPageSetup = { ->
-    delegate.with {
-        autobreaks = true
-        fitToPage = true
+    /**
+     * 用紙サイズ、1ページフィットを設定
+     * @return
+     */
+    Sheet applyCustomPageSetup(){
+        this.with {
+            autobreaks = true
+            fitToPage = true
+        }
+        PrintSetup ps = this.getPrintSetup()
+        ps.setPaperSize(PrintSetup.A4_PAPERSIZE)
+        ps.setLandscape(true)
+        ps.setFitWidth((short)1)
+        ps.setFitHeight((short)0)
+        this
     }
-    ps = delegate.getPrintSetup()
-    ps.setPaperSize(PrintSetup.A4_PAPERSIZE)
-    ps.setLandscape(true)
-    ps.setFitWidth((short)1)
-    ps.setFitHeight((short)0)
-    delegate
-}
 
-Sheet.metaClass.customPrintAreaSetup = { ->
-    wb = delegate.workbook
-    nr = delegate.lastRowNum
-    nc = delegate.inject(0, {acc, row ->
-        if(acc < row.lastCellNum)
-            row.lastCellNum
-        else
-            acc
-    })
-    wb.setPrintArea(wb.getSheetIndex(delegate),0,nc,0,nr)
-    delegate
+    /**
+     * 印刷エリアを設定。
+     * @return
+     */
+    Sheet applyCustomPrintArea(){
+        Workbook wb = this.workbook
+        int nr = this.lastRowNum
+        int nc = this.inject(0, {acc, row ->
+            if(acc < row.lastCellNum)
+                row.lastCellNum
+            else
+                acc
+        })
+        wb.setPrintArea(wb.getSheetIndex(this),0,nc,0,nr)
+        this
+    }
 }
 
 // main
@@ -52,7 +70,9 @@ Sheet.metaClass.customPrintAreaSetup = { ->
 wb = WorkbookFactory.create(new File("./data/sample.xlsx"))
 for(i = 0; i < wb.numberOfSheets ; i++){
     sheet = wb.getSheetAt(i)
-    sheet.setCustomMargin().customPageSetup().customPrintAreaSetup()
+    use(SheetCategory) {
+        sheet.applyCustomMargin().applyCustomPageSetup().applyCustomPrintArea()
+    }
 }
 
 new File("out.xlsx").withOutputStream { out ->
