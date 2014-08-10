@@ -1,13 +1,13 @@
-/**
- * Created by bohnen on 2014/08/08.
- */
+
 @Grapes(
         [
                 @Grab(group='org.apache.poi', module='poi', version='3.10-FINAL'),
                 @Grab(group='org.apache.poi', module='poi-ooxml', version='3.10-FINAL'),
+                @Grab(group='commons-io', module='commons-io', version='2.4')
         ]
 )
 import org.apache.poi.ss.usermodel.*
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * Sheetクラスへの拡張
@@ -65,16 +65,29 @@ class SheetCategory{
     }
 }
 
-// main
-
-wb = WorkbookFactory.create(new File("./data/sample.xlsx"))
-for(i = 0; i < wb.numberOfSheets ; i++){
-    sheet = wb.getSheetAt(i)
-    use(SheetCategory) {
-        sheet.applyCustomMargin().applyCustomPageSetup().applyCustomPrintArea()
+/**
+ * 対象のブックに対して印刷設定を行う。実際の印刷設定はSheetCategoryクラスにて。
+ * @param wb
+ */
+def printSetup(Workbook wb){
+    for(i = 0; i < wb.numberOfSheets ; i++){
+        sheet = wb.getSheetAt(i)
+        use(SheetCategory) {
+            sheet.applyCustomMargin().applyCustomPageSetup().applyCustomPrintArea()
+        }
     }
 }
 
-new File("out.xlsx").withOutputStream { out ->
-    wb.write(out)
+// main
+// 全ての引数はxlsxファイルである前提. never check errors.
+
+new File("out").mkdir();
+
+args.each{ arg ->
+    Workbook wb = WorkbookFactory.create(new File(arg))
+    printSetup(wb)
+
+    new File("./out/${FilenameUtils.getName(arg)}").withOutputStream { out ->
+        wb.write(out)
+    }
 }
