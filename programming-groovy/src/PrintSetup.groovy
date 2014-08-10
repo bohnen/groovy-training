@@ -7,7 +7,7 @@
         ]
 )
 import org.apache.poi.ss.usermodel.*
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.FilenameUtils
 
 /**
  * Sheetクラスへの拡張
@@ -15,7 +15,7 @@ import org.apache.commons.io.FilenameUtils;
 @Category(Sheet)
 class SheetCategory{
     /**
-     * マージンを設定
+     * マージンを設定。左右 約1cm, 上下約1.5cm
      * @return
      */
     Sheet applyCustomMargin(){
@@ -31,7 +31,7 @@ class SheetCategory{
     }
 
     /**
-     * 用紙サイズ、1ページフィットを設定
+     * 用紙サイズ、A4 1ページフィットを設定
      * @return
      */
     Sheet applyCustomPageSetup(){
@@ -48,7 +48,7 @@ class SheetCategory{
     }
 
     /**
-     * 印刷エリアを設定。
+     * 印刷エリアを設定。印刷エリアは何かしら入力のあるセルを含むように、最大の行 x 最大の列となるように設定
      * @return
      */
     Sheet applyCustomPrintArea(){
@@ -63,6 +63,18 @@ class SheetCategory{
         wb.setPrintArea(wb.getSheetIndex(this),0,nc,0,nr)
         this
     }
+    /**
+     * ヘッダフッタを設定。
+     * @return
+     */
+    Sheet applyCustomHeaderFooter(){
+        Header header = this.getHeader()
+        header.setLeft("&\"メイリオ,標準\"ファイル名：&F")
+        header.setRight("&\"メイリオ,標準\"シート名：&A")
+        Footer footer = this.getFooter()
+        footer.setRight("&P / &N")
+        this
+    }
 }
 
 /**
@@ -73,7 +85,10 @@ def printSetup(Workbook wb){
     for(i = 0; i < wb.numberOfSheets ; i++){
         sheet = wb.getSheetAt(i)
         use(SheetCategory) {
-            sheet.applyCustomMargin().applyCustomPageSetup().applyCustomPrintArea()
+            sheet.applyCustomMargin()
+                 .applyCustomPageSetup()
+                 .applyCustomPrintArea()
+                 .applyCustomHeaderFooter()
         }
     }
 }
