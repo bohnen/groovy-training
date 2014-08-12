@@ -39,8 +39,8 @@ class SheetCategory{
             autobreaks = true
             fitToPage = true
         }
-        PrintSetup ps = this.getPrintSetup()
-        ps.setPaperSize(PrintSetup.A4_PAPERSIZE)
+        org.apache.poi.ss.usermodel.PrintSetup ps = this.getPrintSetup()
+        ps.setPaperSize(org.apache.poi.ss.usermodel.PrintSetup.A4_PAPERSIZE)
         ps.setLandscape(true)
         ps.setFitWidth((short)1)
         ps.setFitHeight((short)0)
