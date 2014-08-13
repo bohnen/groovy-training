@@ -49,17 +49,22 @@ class SheetCategory{
 
     /**
      * 印刷エリアを設定。印刷エリアは何かしら入力のあるセルを含むように、最大の行 x 最大の列となるように設定
+     * 行の最初のセルに"PB"という文字列があると、改ページを挿入する
      * @return
      */
     Sheet applyCustomPrintArea(){
         Workbook wb = this.workbook
         int nr = this.lastRowNum
-        int nc = this.inject(0, {acc, row ->
-            if(acc < row.lastCellNum)
-                row.lastCellNum
-            else
-                acc
-        })
+        int nc = 0
+        this.each { row ->
+            Cell c = row.getCell(0)
+            if(c != null && c.getCellType() == Cell.CELL_TYPE_STRING && c.getStringCellValue() == "PB") {
+                this.setRowBreak(row.getRowNum())
+                c.setCellValue("")
+            }
+            if(nc < row.lastCellNum)
+                nc = row.lastCellNum
+        }
         wb.setPrintArea(wb.getSheetIndex(this),0,nc,0,nr)
         this
     }
