@@ -38,11 +38,21 @@
       <file leaf-file-name="FormatWBS.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FormatWBS.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76109934" vertical-offset="0" max-vertical-offset="540">
-              <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.031712472" vertical-offset="0" max-vertical-offset="600">
+              <caret line="1" column="63" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
               <folding>
-                <element signature="e#0#30#0" expanded="true" />
+                <element signature="e#73#505#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WaysToLoop.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/WaysToLoop.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -124,8 +134,8 @@
         <option value="$PROJECT_DIR$/src/Execute.groovy" />
         <option value="$PROJECT_DIR$/src/PrintSetup.groovy" />
         <option value="$PROJECT_DIR$/src/.gitignore" />
-        <option value="$PROJECT_DIR$/src/FormatWBS.groovy" />
         <option value="$PROJECT_DIR$/src/.smartsheet.groovy" />
+        <option value="$PROJECT_DIR$/src/FormatWBS.groovy" />
       </list>
     </option>
   </component>
@@ -579,12 +589,12 @@
       <workItem from="1407889285641" duration="9000" />
       <workItem from="1407889778933" duration="1407000" />
       <workItem from="1408349168891" duration="1583000" />
-      <workItem from="1408351460328" duration="2139000" />
+      <workItem from="1408351460328" duration="2410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28904000" />
+    <option name="totallyTimeSpent" value="29175000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="27" y="53" width="1227" height="874" extended-state="0" />
@@ -930,13 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WaysToLoop.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09" vertical-offset="0" max-vertical-offset="500">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LightGreetings.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27" vertical-offset="0" max-vertical-offset="500">
@@ -1004,12 +1007,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/WaysToLoop.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/FormatWBS.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76109934" vertical-offset="0" max-vertical-offset="540">
-          <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.031712472" vertical-offset="0" max-vertical-offset="600">
+          <caret line="1" column="63" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#73#505#0" expanded="true" />
           </folding>
         </state>
       </provider>

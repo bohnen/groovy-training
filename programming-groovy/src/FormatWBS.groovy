@@ -1,4 +1,7 @@
-import groovyx.net.http.Method
+/**
+ * Download smartsheet project file as xls and format to print.
+ */
+
 @Grapes(
         [
                 @Grab(group='org.apache.poi', module='poi', version='3.10-FINAL'),
@@ -10,6 +13,7 @@ import groovyx.net.http.Method
 )
 import org.apache.poi.ss.usermodel.*
 import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
 
 // input properties
 def prop = new ConfigSlurper().parse(new File(".smartsheet.groovy").toURI().toURL())
